@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ล็อกอินเข้าสู่หัวใจของฉัน 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 400px;
+            max-width: 90%;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: #ff6b8b;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .login-header p {
+            color: #888;
+            font-size: 16px;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff6b8b;
+            font-size: 18px;
+        }
+        
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #f0f0f0;
+            border-radius: 50px;
+            background: #f9f9f9;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group textarea {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius: 15px;
+            min-height: 100px;
+            resize: none;
+        }
+        
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #ff6b8b;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.2);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff6b8b, #ff8e9e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 139, 0.3);
+        }
+        
+        .login-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .special-message {
+            text-align: center;
+            margin-top: 25px;
+            color: #ff6b8b;
+            font-size: 15px;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .special-message.show {
+            opacity: 1;
+        }
+        
+        .secret-note {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #ff6b8b;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.5s ease;
+        }
+        
+        .secret-note.show {
+            bottom: 15px;
+        }
+        
+        .heart-icon {
+            display: inline-block;
+            color: #ff6b8b;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            20% {
+                transform: scale(1.2);
+            }
+            40% {
+                transform: scale(1);
+            }
+            60% {
+                transform: scale(1.2);
+            }
+            80% {
+                transform: scale(1);
+            }
+        }
+        
+        .success-container {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .success-container h2 {
+            color: #ff6b8b;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+        
+        .success-container p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .love-gift {
+            margin: 25px 0;
+            font-size: 60px;
+            color: #ff6b8b;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .reset-btn {
+            background: #f0f0f0;
+            color: #666;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-btn:hover {
+            background: #e0e0e0;
+        }
+        /* ส่วนของช่องตอบกลับ */
+        
+        .comment-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ff6b8b;
+        }
+        
+        .comment-section h3 {
+            color: #ff6b8b;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .comment-section p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #ff6b8b, #ff8e9e);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(255, 107, 139, 0.3);
+        }
+        
+        .response-display {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 107, 139, 0.1);
+            border-radius: 15px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .response-display h4 {
+            color: #ff6b8b;
+            margin-bottom: 10px;
+        }
+        
+        .response-display p {
+            color: #666;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .saved-responses {
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .saved-responses h4 {
+            color: #ff6b8b;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .response-item {
+            background: rgba(255, 107, 139, 0.05);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .response-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .share-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 107, 139, 0.1);
+            border-radius: 15px;
+        }
+        
+        .share-section h4 {
+            color: #ff6b8b;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .share-btn.screenshot {
+            background: #ff6b8b;
+            color: white;
+        }
+        
+        .share-btn.line {
+            background: #00c300;
+            color: white;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            .login-header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- หัวใจลอย -->
+    <div class="floating-hearts">
+        <i class="fas fa-heart heart" style="left: 10%; font-size: 20px; animation-delay: 0s;"></i>
+        <i class="fas fa-heart heart" style="left: 30%; font-size: 25px; animation-delay: 1s;"></i>
+        <i class="fas fa-heart heart" style="left: 50%; font-size: 18px; animation-delay: 2s;"></i>
+        <i class="fas fa-heart heart" style="left: 70%; font-size: 22px; animation-delay: 3s;"></i>
+        <i class="fas fa-heart heart" style="left: 90%; font-size: 15px; animation-delay: 4s;"></i>
+        <i class="fas fa-heart heart" style="left: 20%; font-size: 30px; animation-delay: 5s;"></i>
+        <i class="fas fa-heart heart" style="left: 40%; font-size: 20px; animation-delay: 6s;"></i>
+        <i class="fas fa-heart heart" style="left: 60%; font-size: 25px; animation-delay: 7s;"></i>
+        <i class="fas fa-heart heart" style="left: 80%; font-size: 18px; animation-delay: 8s;"></i>
+    </div>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>ล็อกอินเข้าสู่ระบบถ้าอยากรู้ <span class="heart-icon">❤️</span></h1>
+            <p>ใส่รหัสลองดูสิ</p>
+        </div>
+        <div id="loginForm">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="ชื่อผู้ใช้" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="รหัสผ่าน">
+            </div>
+            <button class="login-btn" onclick="checkLove()">
+                ถ้าอยากรู้กดเข้าระบบ <i class="fas fa-heart"></i>
+            </button>
+            <div class="special-message" id="specialMessage">
+                รหัสผ่านไม่ถูกต้อง ลองใหม่อีกครั้งนะคะ 💕
+            </div>
+        </div>
+        <div class="success-container" id="successContainer">
+            <div class="love-gift">💖</div>
+            <h2>นั้นแน๊ ยินดีต้อนรับสู่ในหัวใจ!</h2>
+            <p>
+                เข้ามาแล้วอย่าคิดว่าจะได้ออกไปนะ<br>ไม่ให้ออกหรอกมัดแขนมัดขาไว้ละ 😁
+            </p>
+            <p>
+                หยอกๆ<strong>:</strong> <br> "อยากรู้จังเลยว่าคนที่กดเข้ามา...มีใจให้ยังน้าา"
+            </p>
+
+            <!-- ส่วนของช่องตอบกลับ -->
+            <div class="comment-section">
+                <h3><i class="fas fa-comment-heart"></i> สามารถตอบได้นะ</h3>
+                <p>จะตอบว่าไรน้าา.....อยากรู้จังง อิอิ 💭</p>
+
+                <div class="input-group">
+                    <i class="fas fa-pen"></i>
+                    <textarea id="loveResponse" placeholder="พิมพ์ตรงนี้ได้เลย....."></textarea>
+                </div>
+
+                <button class="submit-btn" onclick="submitLoveResponse()">
+                    ส่งคำตอบตรงนี้จ้า <i class="fas fa-paper-plane"></i>
+                </button>
+
+                <div class="response-display" id="responseDisplay">
+                    <h4><i class="fas fa-heart"></i> คำตอบของเธอ:</h4>
+                    <p id="responseText"></p>
+                </div>
+            </div>
+
+            <div class="saved-responses" id="savedResponses">
+                <h4><i class="fas fa-history"></i> คำตอบที่ผ่านมา:</h4>
+                <div id="responsesList"></div>
+            </div>
+
+            <div class="share-section">
+                <h4><i class="fas fa-share-alt"></i> แชร์ความรู้สึกให้ฉันหน่อย!</h4>
+                <p style="color: #666; font-size: 14px; text-align: center; margin-bottom: 15px;">
+                    ฉันอยากอ่านคำตอบของเธอจังเลย 💕
+                </p>
+
+                <div class="share-buttons">
+                    <button class="share-btn screenshot" onclick="showScreenshotGuide()">
+                        <i class="fas fa-camera"></i> แคปหน้าจอ
+                    </button>
+
+                    <button class="share-btn line" onclick="shareToLine()">
+                        <i class="fab fa-line"></i> ส่งผ่าน Line
+                    </button>
+                </div>
+            </div>
+
+            <button class="reset-btn" onclick="resetForm()">กลับหน้าล็อกอิน</button>
+        </div>
+        <div class="secret-note" id="secretNote">
+            💡 เคล็ดลับ: ชื่อผู้ใช้คือชื่อIGคุณ รหัสผ่านคือวันนี้เดือนนี้ปีนี้ (dd/mm/yyyy)
+        </div>
+    </div>
+    <script>
+        // ตั้งค่ารหัสผ่าน (แก้ไขตามความเป็นจริง)
+        const correctUsername = "amplanningkiki"; // เปลี่ยนเป็นนามสกุลจริง
+        const correctPassword = "22082568"; // เปลี่ยนเป็นวันที่คบกันจริง (dd/mm/yyyy)
+
+        // โหลดคำตอบที่บันทึกไว้เมื่อเปิดหน้า
+        window.onload = function() {
+            loadSavedResponses();
+        };
+
+        function checkLove() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const specialMessage = document.getElementById('specialMessage');
+
+            if (username === correctUsername && password === correctPassword) {
+                // ล็อกอินสำเร็จ
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('successContainer').style.display = 'block';
+                document.getElementById('secretNote').classList.remove('show');
+                // สร้างหัวใจระเบิด
+                createHeartExplosion();
+            } else {
+                // ล็อกอินไม่สำเร็จ
+                specialMessage.classList.add('show');
+                document.getElementById('secretNote').classList.add('show');
+                // สั่นหน้าจอเล็กน้อย
+                document.querySelector('.login-container').style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.querySelector('.login-container').style.animation = '';
+                }, 500);
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('successContainer').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('specialMessage').classList.remove('show');
+            document.getElementById('responseDisplay').style.display = 'none';
+            document.getElementById('loveResponse').value = '';
+        }
+
+        function createHeartExplosion() {
+            const container = document.querySelector('.floating-hearts');
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fas fa-heart heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, 70%)`;
+                container.appendChild(heart);
+                // ลบหัวใจหลังจาก animation เสร็จ
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        }
+
+        // ฟังก์ชันสำหรับส่วนตอบกลับ
+        function submitLoveResponse() {
+            const response = document.getElementById('loveResponse').value.trim();
+
+            if (response === '') {
+                // กรณียังไม่ได้พิมพ์
+                document.getElementById('loveResponse').style.borderColor = '#ff6b8b';
+                setTimeout(() => {
+                    document.getElementById('loveResponse').style.borderColor = '#f0f0f0';
+                }, 1000);
+                return;
+            }
+
+            // แสดงคำตอบ
+            document.getElementById('responseText').textContent = response;
+            document.getElementById('responseDisplay').style.display = 'block';
+
+            // บันทึกคำตอบ
+            saveResponse(response);
+
+            // สร้างหัวใจระเบิด
+            createHeartExplosion();
+
+            // เคลียร์ช่องพิมพ์
+            document.getElementById('loveResponse').value = '';
+
+            // แสดงข้อความขอบคุณ
+            showThankYouMessage();
+        }
+
+        function saveResponse(response) {
+            // ดึงคำตอบเก่าจาก localStorage
+            let responses = JSON.parse(localStorage.getItem('loveResponses')) || [];
+
+            // เพิ่มคำตอบใหม่
+            const newResponse = {
+                text: response,
+                timestamp: new Date().toLocaleString('th-TH')
+            };
+
+            responses.unshift(newResponse); // เพิ่มไว้ข้างหน้าสุด
+
+            // เก็บไว้แค่ 5 คำตอบล่าสุด
+            if (responses.length > 5) {
+                responses = responses.slice(0, 5);
+            }
+
+            // บันทึกลง localStorage
+            localStorage.setItem('loveResponses', JSON.stringify(responses));
+
+            // อัพเดทการแสดงผล
+            displaySavedResponses();
+        }
+
+        function loadSavedResponses() {
+            displaySavedResponses();
+        }
+
+        function displaySavedResponses() {
+            const responses = JSON.parse(localStorage.getItem('loveResponses')) || [];
+            const responsesList = document.getElementById('responsesList');
+
+            if (responses.length === 0) {
+                responsesList.innerHTML = '<p style="text-align: center; color: #999; font-size: 14px;">ยังไม่มีคำตอบที่บันทึกไว้</p>';
+                return;
+            }
+
+            responsesList.innerHTML = responses.map(response => `
+                <div class="response-item">
+                    ${response.text}
+                    <div class="response-time">${response.timestamp}</div>
+                </div>
+            `).join('');
+        }
+
+        function showThankYouMessage() {
+            // สร้างข้อความขอบคุณชั่วคราว
+            const thankYouMsg = document.createElement('div');
+            thankYouMsg.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: white;
+                padding: 20px 30px;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 1000;
+                text-align: center;
+                color: #ff6b8b;
+                font-size: 18px;
+                font-weight: 600;
+                animation: fadeInOut 2s ease-in-out;
+            `;
+            thankYouMsg.innerHTML = '<i class="fas fa-heart"></i> ขอบคุณคำตอบของเธอมากเลยนะ! <i class="fas fa-heart"></i>';
+
+            // เพิ่ม animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.body.appendChild(thankYouMsg);
+
+            // ลบหลัง 2 วินาที
+            setTimeout(() => {
+                thankYouMsg.remove();
+                style.remove();
+            }, 2000);
+        }
+
+        function showScreenshotGuide() {
+            const guide = document.createElement('div');
+            guide.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+                color: white;
+                font-family: 'Kanit', sans-serif;
+            `;
+
+            guide.innerHTML = `
+                <div style="background: white; color: #333; padding: 30px; border-radius: 20px; max-width: 400px; text-align: center;">
+                    <h3 style="color: #ff6b8b; margin-bottom: 20px;">
+                        <i class="fas fa-camera"></i> วิธีแคปหน้าจอ
+                    </h3>
+                    <div style="text-align: left; margin-bottom: 20px;">
+                        <p style="margin-bottom: 10px;"><strong>📱 มือถือ:</strong></p>
+                        <p style="margin-bottom: 15px; padding-left: 20px;">
+                            - กดปุ่ม Power + Volume Down พร้อมกัน<br>
+                            - รูปจะอยู่ในแกลเลอรี่
+                        </p>
+                        
+                        <p style="margin-bottom: 10px;"><strong>💻 คอมพิวเตอร์:</strong></p>
+                        <p style="padding-left: 20px;">
+                            - Windows: กด Windows + Shift + S<br>
+                            - Mac: กด Command + Shift + 4
+                        </p>
+                    </div>
+                    <p style="color: #ff6b8b; margin-bottom: 20px;">
+                        แล้วส่งรูปมาให้ฉันทาง Line นะ! 💖
+                    </p>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="background: #ff6b8b; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+                        โอเค!
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(guide);
+        }
+
+        function shareToLine() {
+            const response = document.getElementById('responseText').textContent;
+            const message = `คำตอบของฉันคือ:\n"${response}"\n\n💖 ส่งมาจากหัวใจของฉัน`;
+
+            window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(message)}`);
+        }
+
+        // เพิ่ม animation สั่นเมื่อพิมพ์ผิด
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // แสดงคำแนะนำเมื่อพิมพ์
+        document.getElementById('password').addEventListener('input', function() {
+            if (this.value.length > 0) {
+                document.getElementById('secretNote').classList.add('show');
+            }
+        });
+    </script>
+</body>
+
+</html>
